@@ -1,3 +1,5 @@
 # Hidden Markov Model for Genome Sequence Analysis
 
 [S. cerevisiae chromosome III from NCBI](https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2)
+
+<img src="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/course/chromosome_emission.pdf">
