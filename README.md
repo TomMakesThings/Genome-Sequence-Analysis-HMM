@@ -1,24 +1,15 @@
 # Genome Sequence Analysis with an HMM
 ## About
-In <a href="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/main/GSA.ipynb">this Jupyter notebook</a>, coding regions of <a href="https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2">S. cerevisiae chromosome III</a> DNA were inferred by modelling regions of the genome via a hidden Markov model (HMM). Representing the chromosome's encoded %GC as an emitted sequence, the Baum-Welch algorithm was implemented to estimate the HMM's parameters. The coding and non-coding regions of DNA are then inferred by estimating the most probable sequence of hidden states via the Viterbi algorithm.
+In <a href="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/main/GSA.ipynb">this Jupyter notebook</a>, coding regions of <a href="https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2">S. cerevisiae chromosome III</a> DNA were inferred by modelling regions of the genome via a hidden Markov model (HMM). The chromosome was binned into 100 base-pair long windows and the percentage of G and C per window calculated. The %GC per window was then labelled with one of five possible categories, e.g. %GC < 33%, and the encoded genome modelled as an emitted sequence of the HMM. This allowed the Baum-Welch algorithm to be run to estimate the HMM's parameters. The coding and non-coding regions of DNA could then inferred through estimating the most probable sequence of hidden states via the Viterbi algorithm.
 
 <img src="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/assets/HMM-State-Diagram.png">
 <sub>Figure (A) HMM state transition diagram is shown in the centre, with number above each arrow depicting the inferred probability of jumping from one state to another, e.g. there is a 9% probability of transitioning from a coding to non-coding region. To the left/right are the probabilities of the HMM emitting different %GC depending on whether the model is in the coding or non-coding state.</sub>
 
+## Results
+Looking at the first 150 windows of encoded *S. cerevisiae* chromosome III, the first 9 were predicted to be a coding region. This is because the first 1,098 base pairs are known to be the telomeric region TEL03L, and in most organisms telomeric regions have high %GC. The telomere is followed by 251bp long terminal repeat and a 744bp dubious open reading frame. As these regions consecutively have lower %GC, they have been predicted non-coding by the Viterbi algorithm.
+
+In long genomic sequences, higher %GC is indicative of the presence of genes. The next region predicted as coding is between bins 23 to 37, i.e. base pairs 2300 to 3700. When compared against the known annotation, the high %GC in this area can be explained by the presence of two pseudogenes between 2126bp - 2566bp and 2824bp - 3750bp.
+
+Other regions of interest include GEX1, a gene encoding a proton:glutathione antiporter between 6479bp - 8326bp, VBA3, a vacuolar basic amino acid transporter between 9706bp - 11082bp and YCL068C, a putative protein of unknown function between 11503bp - 12285bp. The HMM successfully identifies the location of YCL068C, however it is not always precise demonstrated as it only picked up on the first half of GEX1 and did not pinpoint VBA3.
+
 <img src="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/assets/Annotated-Chromosome-Emission.png">
-
-## Data
-The FASTA file containing the chromosome for S. cerevisiae was downloaded from <a href="https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2">NCBI</a>
-
-To encapsulate the model, I created a Python class HMM. During initialisation, this either
-takes the parameters directly or reads them from a file. Parameters include the state space S,
-emission space V, transition matrix A, initial distribution μ0, and emission matrix B. Additionally,
-the expected emission length is given as a parameter N.
-
-After running the Viterbi algorithm on the binned yeast chromosome, a subset of bins can be plotted and coloured to visualise their predicted states. For example in the plot below, state 0 captures runs of high GC content, while state 1 encodes lower GC content.
-
-Telomeres are repetitive nucleotide sequences found in eukaryotes at the beginning of chromosomes. In most organisms they have a high GC content since they play a protective role against double strand breaks. In the case of *S. cerevisiae* chromosome III, the first 1098 base pairs are known to be the telomeric region TEL03L. The first 9 bins were predicted state 0, effectively identifying the first 900 base pairs belonging to this telomeric region. The telomere is followed by 251bp long terminal repeat and a 744bp dubious open reading frame. As these regions consecutively have lower \%GC, they have been predicted state 1 by the Viterbi algorithm.
-
-In long genomic sequences, higher GC content is indicative of the presence of genes. The next region predicted as state 0 is between bins 23 to 37, i.e. base pairs 2300 to 3700. When compared against the known annotation, the high \%GC in this area can be explained by the presence of two pseudogenes between 2126bp - 2566bp and 2824bp - 3750bp.
-
-Other regions of interest include GEX1, a gene encoding a proton:glutathione antiporter between 6479bp - 8326bp, VBA3, a vacuolar basic amino acid transporter between 9706bp - 11082bp and YCL068C, a putative protein of unknown function between 11503bp - 12285bp. The HMM successfully identifies the location of YCL068C, however only picked up on the first half of GEX1 and did not pinpoint VBA3.
