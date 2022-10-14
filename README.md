@@ -1,8 +1,9 @@
 # Genome Sequence Analysis with an HMM
 ## About
-In this project, coding regions of S. cerevisiae chromosome III DNA were inferred by modelling regions of the genome using a hidden Markov model (HMM). In <a href="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/main/GSA.ipynb">this Jupyter notebook</a>, the Baum-Welch algorithm has been implemented to estimate the HMM's parameters using the chromosome's encoded %GC as an emitted sequence. The most probable sequence of hidden states representing coding and non-coding regions of DNA is then inferred by applying the Viterbi algorithm.
+In <a href="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/main/GSA.ipynb">this Jupyter notebook</a>, coding regions of <a href="https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2">S. cerevisiae chromosome III</a> DNA were inferred by modelling regions of the genome via a hidden Markov model (HMM). Representing the chromosome's encoded %GC as an emitted sequence, the Baum-Welch algorithm was implemented to estimate the HMM's parameters. The coding and non-coding regions of DNA are then inferred by estimating the most probable sequence of hidden states via the Viterbi algorithm.
 
 <img src="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/assets/HMM-State-Diagram.png">
+<sub>Figure (A) HMM state transition diagram is shown in the centre, with number above each arrow depicting the inferred probability of jumping from one state to another, e.g. there is a 9% probability of transitioning from a coding to non-coding region. To the left/right are the probabilities of the HMM emitting different %GC depending on whether the model is in the coding or non-coding state.</sub>
 
 <img src="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/assets/Annotated-Chromosome-Emission.png">
 
