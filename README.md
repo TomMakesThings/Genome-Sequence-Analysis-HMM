@@ -1,4 +1,12 @@
-# Genome Sequence Analysis with an HMM
+<div align="center">
+  <h1><b>Genome Sequence Analysis with an HMM</b></h1>
+  <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/61354833?v=4&h=100&w=100&fit=cover&mask=circle&maxage=7d">
+  <p><b>🧬 Code by <a href="https://github.com/TomMakesThings">TomMakesThings</a></b> 🧬</p>
+  <p><b><sub>October 2021</sub></b></p>
+</div>
+
+---
+
 ## Methodology
 In <a href="https://github.com/TomMakesThings/Genome-Sequence-Analysis-HMM/blob/main/GSA.ipynb">this Jupyter notebook</a>, coding regions of <a href="https://www.ncbi.nlm.nih.gov/genome/gdv/browser/genome/?id=GCF_000146045.2">*S. cerevisiae* chromosome III</a> DNA were inferred by modelling regions of the genome via a hidden Markov model (HMM). The chromosome was binned into 100 base-pair long windows and the percentage of G and C per window calculated. The %GC per window was then labelled with one of five possible categories, e.g. %GC < 33%, and the encoded genome modelled as an emitted sequence of the HMM. This allowed the Baum-Welch algorithm to be run to estimate the HMM's parameters. The coding and non-coding regions of DNA could then inferred through estimating the most probable sequence of hidden states via the Viterbi algorithm.
 
