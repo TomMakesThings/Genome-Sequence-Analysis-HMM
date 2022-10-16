@@ -1,5 +1,5 @@
 <div align="center">
-  <h1><b>HMM Genome Sequence Analysis</b></h1>
+  <h1><b>Genome Sequence Analysis HMM</b></h1>
   <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/61354833?v=4&h=100&w=100&fit=cover&mask=circle&maxage=7d">
   <p><b>🧬 Code by <a href="https://github.com/TomMakesThings">TomMakesThings</a></b> 🧬</p>
   <p><b><sub>October 2021</sub></b></p>
